@@ -1,0 +1,38 @@
+<div *ngIf="user">
+
+  <h2>{{user.firstName | uppercase}} {{user.lastName | uppercase}} Details</h2>
+    <ul class="userSelected">
+      <li>
+        <label>Firstname:
+          <input [(ngModel)]="user.firstName" placeholder="firstname"/>
+        </label>
+      </li>
+      <li>
+        <label>Lastname:
+          <input [(ngModel)]="user.lastName" placeholder="lastname"/>
+        </label>
+      </li>
+      <li>
+        <label>E-mail:
+          <input [(ngModel)]="user.email" placeholder="email"/>
+        </label>
+      </li>
+      <li>
+        <label>Status:
+          <input [(ngModel)]="user.status" placeholder="status"/>
+        </label>
+      </li>
+      <li>
+        <label>Age:
+        <input [(ngModel)]="user.age" placeholder="age"/>
+        </label>
+      </li>
+      <li>
+        <label>Sex:
+          <input [(ngModel)]="user.sex" placeholder="sex"/>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+
