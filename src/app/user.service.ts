@@ -12,18 +12,36 @@ import { catchError, map, tap} from 'rxjs/operators';
 export class UserService {
 
   private usersUrl = 'http://localhost:8080/Controller';
-  // private usersUrl = 'http://localhost:8080/GetUsers';
-  // private usersUrl = '/assets/data/users.json';
+
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}
+    )};
 
   constructor(private http: HttpClient) {} // instantie van httpClient
 
   getUsers(): Observable<User[]> {
-    // this.http.get(this.usersUrl).toPromise().then(data => { alert(data.toString()); });
+    return this.http.get<User[]>(this.usersUrl)  // User[]-> cast naar array van users
+      .pipe(catchError(this.handleError<User[]>('getUsers', []))
+      );
+  }
 
-    return this.http.get<User[]>(this.usersUrl);  // User[]-> cast naar array van users
+  /** PUT: update the user on the server */
+  updateUser(user: User): Observable<any> {
+    console.log('updateUser called');
+    return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateUser'))
+    );
   }
 
 
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      alert('error');
+      console.error(error);
+      console.log('error: ' + error);
+      return of (result as T);
+    };
+  }
 
 /*
   getUsers(): Observable<User[]> {

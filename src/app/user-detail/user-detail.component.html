@@ -14,7 +14,7 @@
       </li>
       <li>
         <label>E-mail:
-          <input [(ngModel)]="user.email" placeholder="email"/>
+          <input [(ngModel)]="user.email" placeholder="user.email" readonly/>
         </label>
       </li>
       <li>
@@ -31,6 +31,9 @@
         <label>Sex:
           <input [(ngModel)]="user.sex" placeholder="sex"/>
         </label>
+      </li>
+      <li>
+        <button (click)="save()">Save</button>
       </li>
     </ul>
   </div>
